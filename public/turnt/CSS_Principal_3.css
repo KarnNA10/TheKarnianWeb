@@ -1,0 +1,297 @@
+/*border-radius: 50%;*/
+
+html {
+    color: #8A516E01;
+    background-image: url(12.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position-x: 96%;
+    background-position-y: 93.1%;
+    background-attachment: fixed;
+    background-color: #011e0d;
+    max-height: 50%;
+    position: inherit;
+}
+ 
+body{
+    margin: 1.2%;
+    width: 36%;
+    margin-top: 45px;
+}  
+
+marquee {
+    color: #FFFFFF;
+    font-size: 32px;
+    background-color: crimson;
+    position: fixed;
+    width: 60%;
+    margin-left: -50.85%;
+    margin-top: -4.44%;
+}
+
+#subBarraSuperior{
+    font-size: 10px;
+    align-self: flex-start;
+    color: transparent;
+    background-color: transparent;
+    /* padding-left: 25px; */
+    margin-left: -59.7%;
+} 
+
+
+iframe{
+    margin-top: -15px;
+    margin-left: 10px;
+    height: 117px;
+}
+#texto {
+    display: none;
+    color: transparent;
+    font-size: 0px
+}
+
+#titulos {
+    /* background-color: #59705d; */
+    font-size: 32px;
+    margin-top: -37px;
+    padding-bottom: 79px;
+    color: #FFFFFF;
+}
+
+nav{  
+    display: flex;
+    position: fixed;
+    top: 0px;
+    background-image: url(Sin_titulo.png);
+    background-size: 36.5%;
+    background-position-x: 13px;
+    background-position-y: -16px;
+    margin-left: 37.1%;
+    height: 111px;
+    width: 100%;
+} 
+u{
+    font-family: Engravers MT;
+    text-decoration: none;
+    font-size: 18px;
+    color: #ffffff;
+}
+#cont2 {
+    background-color: #FFFFFF;
+    color: #033912;
+
+}
+
+#portada{
+  margin-top: -26px;
+  margin-bottom: 0px;
+  margin-left: -2px;
+  margin-right: -2px;
+  animation-duration: 1s;
+  animation-name: siuuu-1;
+  width: 33.3%;
+  min-width: 182px;
+}
+#portada:hover{
+  margin-top: -80px;
+  margin-bottom: 54px;
+  animation-duration: 1s;
+  animation-name: siuuu;
+}
+
+#portada_alt{
+  margin-top: -26px;
+  margin-bottom: -10px;
+  margin-left: -2px;
+  margin-right: -2px;
+  animation-duration: 1s;
+  animation-name: siuuu-1_alt;
+  width: 33.3%;
+  border-bottom: #42975f 10px solid;
+  min-width: 182px;
+}
+#portada_alt:hover{
+  margin-top: -80px;
+  margin-bottom: 44px;
+  animation-duration: 1s;
+  animation-name: siuuu_alt;
+}
+#sleeve{
+    /*margin-top: 83px;*/
+    box-shadow: #000000ad 20px 9px 20px 0px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.footer {
+    position: fixed;
+    right: 25px;
+    top: calc();/*187px;*/
+    color: transparent;
+    width: 60%;
+    height: 465px;
+    /* background-color: #00FF; */
+}
+.footer_2{
+    position: fixed;
+    right: 25px;
+    top: 187px;
+    color: transparent;
+    width: 60%;
+    height: 465px;
+}
+.footer_3{
+    /*right: 25px;
+    top: 187px;
+    width: 100%;*/
+}
+
+#pluma{
+    width: 14.1%;
+    position: fixed;
+    top: -21.6%; 
+    right: 22%;
+}
+
+#disco_1{
+    width: 26%;
+    position: fixed;
+    left: 40.5%;
+    top: 27.4%;    
+}
+#disco{
+    width: 138px;
+    position: fixed;
+    left: 745.3px;
+    top: 334px;
+}
+#boton {
+    width: 41.3px;
+    margin: 40.8% 0px 0px 80.4%;
+}
+#bbb:hover{
+    animation: rotation 2s infinite linear;
+}
+
+p {
+  animation-duration: 3s;
+  animation-name: slidein;
+}
+
+@keyframes girar1 {
+    from { transform: rotate(0deg)  translate(-100px) rotate(0deg); }
+    to { transform: rotate(360deg) translate(-100px) rotate(-360deg); }
+}
+
+@keyframes girar {
+    from { transform: rotate(0deg) rotate(0deg); }
+    to { transform: rotate(360deg) rotate(-360deg); }
+}
+
+@keyframes siuuu{
+  from {
+    margin-top: -26px;
+    margin-bottom: 0px;}
+  to {
+    margin-top: -80px;
+    margin-bottom: 54px;}
+}
+@keyframes siuuu-1{
+  from {
+    margin-top: -80px;
+    margin-bottom: 54px; }
+  to {
+    margin-top: -26px;
+    margin-bottom: 0px;}
+}
+
+@keyframes siuuu_alt{
+  from {
+    margin-top: -26px;
+    margin-bottom: -10px;}
+  to {
+    margin-top: -80px;
+    margin-bottom: 44px;}
+}
+@keyframes siuuu-1_alt{
+  from {
+    margin-top: -80px;
+    margin-bottom: 44px; }
+  to {
+    margin-top: -26px;
+    margin-bottom: -10px;}
+}
+
+.rotate { /*usar esta clase en el html*/
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes rotar {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(15deg);
+  }
+}
+
+
+
+
+
+
+/*???¿????*/
+
+/* The flip box container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.flip-box {
+  margin: 128px 0 43px 0;
+  background-color: transparent;
+  width: 416.3px;
+  height: 416.3px;
+  perspective: 900px;
+}
+
+/* This container is needed to position the front and back side */
+.flip-box-inner {
+  position: relative;
+  /* width: 100%; */
+  /* height: 100%; */
+  transition: transform 2s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.flip-box:hover .flip-box-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.flip-box-front, .flip-box-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.flip-box-front {
+}
+
+/* Style the back side */
+.flip-box-back {
+  transform: rotateY(180deg);
+}
+
+
+
+

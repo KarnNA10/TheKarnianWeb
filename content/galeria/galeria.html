@@ -9,30 +9,25 @@
     <title>Galería - The Karnian Store</title>
 </head>
 <script>
-    function escInf(dataArray){
+    function escInf(sectionId, dataArray){
         // Obtener la colección de elementos <article>
-        const articles = document.querySelectorAll('.galeria article');
-    
+        const articles = document.querySelectorAll(`#${sectionId} article`);
         // Verificar si la cantidad de elementos en 'dataArray' coincide con la cantidad de elementos <article>
         if (dataArray.length !== articles.length) {
             console.error('La longitud de dataArray no coincide con la cantidad de elementos <article>.');
             return;
         }
-    
         // Iterar sobre cada elemento <article> y asignar los datos del array
         articles.forEach((article, index) => {
             const data = dataArray[index];
-    
             // Verificar si el array de datos tiene la longitud esperada
             if (data.length === 4) {
                 const [imgDir, type, price, descr] = data;
-    
                 // Obtener los elementos dentro del <article>
                 const imgElement = article.querySelector('.prodImg');
                 const figCaptionName = article.querySelector('figcaption:not(.price)');
                 const figCaptionPrice = article.querySelector('.price');
     
-                // Asignar los valores
                 imgElement.src = `/img/prod/${imgDir}`;
                 figCaptionName.textContent = descr;
                 figCaptionPrice.textContent = `$${price}`;
@@ -46,21 +41,180 @@
         });
     }
     
-    // Ejemplo de uso con el array A
-    const A = [
-        ['Music_ACDC_png_001.png', 'Sticker', '10', 'AC DC'],
-        ['Music_Aphex-Twin_png_001.png', 'Sticker', '5', 'Aphex Twin'],
-        ['Music_BeeGees_png_001.png', 'Sticker', '5', 'Bee Gees'],
-        ['Music_Aphrodites-child_c_001.jpg', 'Sticker', '5', 'Aphrodites Child, 666 album cover']
-    ];
+    // Conteo total (cantidad en prod): 127
+    // ANIME: 5, ART:15, MUSIC 78, STAMPS:29
+    const anime=[
+['Anime_Studio-Ghibli_Howls-Moving-Castle_re_001.png','Sticker','?','Studio Ghibli, Howl\'s Moving Castle'],
+['Anime_Studio-Ghibli_Kiki_re_001.png','Sticker','?','Studio Ghibli, Kiki\'s Delivery Service'],
+['Anime_Studio-Ghibli_Kiki_re_002.png','Sticker','?','Studio Ghibli, Kiki\'s Delivery Service'],
+['Anime_Studio-Ghibli_Logo_re_001.png','Sticker','?','Studio Ghibli (logo)'],
+['Anime_Studio-Ghibli_Totoro_re_001.png','Sticker','?','Studio Ghibli, My Neighbor Totoro']]
+    const art=[
+['Art_Dore_re_001.png','Sticker','?','Gustave Doré, Ilustración'],
+['Art_Dore_re_002.png','Sticker','?','Gustave Doré, Ilustración'],
+['Art_Dore_re_003.png','Sticker','?','Gustave Doré, Ilustración'],
+['Art_Dore_re_004.png','Sticker','?','Gustave Doré, Ilustración'],
+['Art_Dore_re_005.png','Sticker','?','Gustave Doré, Ilustración'],
+['Art_Dore_re_006.png','Sticker','?','Gustave Doré, Ilustración'],
+['Art_Frank-Frazetta_re_001.png','Sticker','?','Frank Frazetta'],
+['Art_Frank-Frazetta_re_002.png','Sticker','?','Frank Frazetta'],
+['Art_Frank-Frazetta_re_003.png','Sticker','?','Frank Frazetta'],
+['Art_Leonora-Carrington_re_001.png','Sticker','?','Leonora Carrington'],
+['Art_Leonora-Carrington_re_002.jpg','Sticker','?','Leonora Carrington'],
+['Art_Remedios-Varo_re_001.png','Sticker','?','Remedios Varo'],
+['Art_Remedios-Varo_re_002.jpg','Sticker','?','Remedios Varo'],
+['Art_Remedios-Varo_re_003.png','Sticker','?','Remedios Varo'],
+['Art_Remedios-Varo_re_004.jpg','Sticker','?','Remedios Varo']]
+    const mus=[
+['Music_Tailor-Swift_c_002.png','Sticker','5','Taylor Swift, album cover'],
+['Music_Tailor-Swift_c_003.png','Sticker','5','Taylor Swift, album cover'],
+['Music_Tailor-Swift_c_004.png','Sticker','5','Taylor Swift, album cover'],
+['Music_Tailor-Swift_c_005.png','Sticker','5','Taylor Swift, album cover'],
+['Music_Tailor-Swift_c_006.png','Sticker','5','Taylor Swift, album cover'],
+['Music_Tailor-Swift_c_007.png','Sticker','5','Taylor Swift, album cover'],
+['Music_Tailor-Swift_c_008.png','Sticker','5','Taylor Swift, album cover'],
+['Music_Tailor-Swift_re_001.png','Sticker','10','Taylor Swift, Eras Tour'],
+['Music_Tailor-Swift_re_002.png','Sticker','12','Taylor Swift'],
+['Music_Tailor-Swift_re_003.png','Sticker','10','Taylor Swiffith'],
+['Music_BTS_c_001.png','Sticker','5',''],
+['Music_BTS_c_002.png','Sticker','5',''],
+['Music_BTS_c_003.png','Sticker','5',''],
+['Music_BTS_c_004.png','Sticker','5',''],
+['Music_BTS_c_005.png','Sticker','5',''],
+['Music_BTS_c_006.png','Sticker','5',''],
+['Music_BTS_re_001.png','Sticker','5',''],
+['Music_BTS_re_002.png','Sticker','5',''],
+['Music_Kañe_re_001.png','Sticker','10','Kanye Wuts'],
+['Music_ACDC_png_001.png','Sticker','5','AC DC, Logo (sin fondo)'],
+['Music_Aphex-Twin_png_001.png','Sticker','5','Aphex Twin, Logo (sin fondo)'],
+['Music_Arctic-Monkeys_re_001.png','Sticker','5','Arctic Monkeys'],
+['Music_Badbunny_png_001.png','Sticker','5','Bad Bunny (sin fondo)'],
+['Music_BeeGees_png_001.png','Sticker','5','Bee Gees, logo (sin fondo)'],
+['Music_Blur_png_001.png','Sticker','5','Blur, logo (sin fondo)'],
+['Music_Aphrodites-child_c_001.jpg','Sticker','5','Aphrodites Child, 666 album cover'],
+['Music_Burt-Bacharach_c_001.jpg','Sticker','5',''],
+['Music_Bust_Bach_re_001.png','Sticker','5',''],
+['Music_Bust_Beethoven_re_001.png','Sticker','5',''],
+['Music_Bust_Haendel_re_001.png','Sticker','5',''],
+['Music_Bust_Mozart_re_001.png','Sticker','5',''],
+['Music_Camel_c_001.png','Sticker','5',''],
+['Music_Charles-Mingus_c_001.png','Sticker','5',''],
+['Music_Dave-Brubeck-Quartet_c_001.png','Sticker','5',''],
+['Music_EDEN_png_001.png','Sticker','5',''],
+['Music_ELP_c_001.png','Sticker','5',''],
+['Music_ELP_png_001.png','Sticker','5',''],
+['Music_Genesis_c_001.png','Sticker','5',''],
+['Music_Gorillaz_png_001.png','Sticker','5',''],
+['Music_Greenslade_c_001.png','Sticker','5',''],
+['Music_Hatsune-Miku_png_001.png','Sticker','5',''],
+['Music_Herbie-Hancock_c_001.png','Sticker','5',''],
+['Music_Hiromi_c_001.png','Sticker','5',''],
+['Music_Holst_c_001.png','Sticker','5',''],
+['Music_Imagine-Dragons_png_001.png','Sticker','5',''],
+['Music_Imagine-Dragons_re_001.png','Sticker','5',''],
+['Music_Jerry-Herman_c_001.png','Sticker','5',''],
+['Music_Jharioh_png_001.png','Sticker','5',''],
+['Music_Jimmy-Smith_c_001.png','Sticker','5',''],
+['Music_John-Coltrane_c_001.png','Sticker','5',''],
+['Music_Keith-Emerson_c_001.png','Sticker','5',''],
+['Music_King-Crimson_c_001.png','Sticker','5',''],
+['Music_Lana-del-Rey_png_001.png','Sticker','5',''],
+['Music_Lovejoy_png_001.png','Sticker','5',''],
+['Music_Marina&theDimonds_png_001.png','Sticker','5',''],
+['Music_Miles-Davis_c_001.png','Sticker','5',''],
+['Music_Moody-Blues_c_001.png','Sticker','5',''],
+['Music_Muse_re_001.png','Sticker','5',''],
+['Music_Opeth_c_001.png','Sticker','5',''],
+['Music_Opeth_png_001.png','Sticker','5',''],
+['Music_PFM_c_001.png','Sticker','5',''],
+['Music_Pink-Floyd_c_001.png','Sticker','5',''],
+['Music_Pink-Floyd_c_002.png','Sticker','5',''],
+['Music_Pink-Floyd_c_003.png','Sticker','5',''],
+['Music_Pink-Floyd_png_001.png','Sticker','5',''],
+['Music_Prince_c_001.png','Sticker','5',''],
+['Music_Prince_png_001.png','Sticker','5',''],
+['Music_Radiohead_png_001.png','Sticker','5',''],
+['Music_Rush_png_001.png','Sticker','5',''],
+['Music_Squarepusher_re_001.png','Sticker','5',''],
+['Music_Synthesizer_re_001.png','Sticker','5',''],
+['Music_Synthesizer_re_002.png','Sticker','5',''],
+['Music_Synthesizer_re_003.png','Sticker','5',''],
+['Music_Tailor-Swift_c_001.png','Sticker','5',''],
+['Music_The-Beatles_png_001.png','Sticker','5',''],
+['Music_The-Mountain-Goats_png_001.png','Sticker','5',''],
+['Music_The-Strokes_png_001.png','Sticker','5',''],
+['Music_Yes_re_001.png','Sticker','5','']] 
+    const stamps=[
+['Stamps_001.jpg','Sticker','5',''],
+['Stamps_002.png','Sticker','5',''],
+['Stamps_003.png','Sticker','5',''],
+['Stamps_004.jpg','Sticker','5',''],
+['Stamps_005.jpg','Sticker','5',''],
+['Stamps_006.jpg','Sticker','5',''],
+['Stamps_007.jpg','Sticker','5',''],
+['Stamps_008.jpg','Sticker','5',''],
+['Stamps_009.jpg','Sticker','5',''],
+['Stamps_010.png','Sticker','5',''],
+['Stamps_011.jpg','Sticker','5',''],
+['Stamps_012.jpg','Sticker','5',''],
+['Stamps_013.jpg','Sticker','5',''],
+['Stamps_014.jpg','Sticker','5',''],
+['Stamps_015.jpg','Sticker','5',''],
+['Stamps_016.jpg','Sticker','5',''],
+['Stamps_017.jpg','Sticker','5',''],
+['Stamps_018.jpg','Sticker','5',''],
+['Stamps_019.jpg','Sticker','5',''],
+['Stamps_020.jpg','Sticker','5',''],
+['Stamps_021.jpg','Sticker','5',''],
+['Stamps_022.jpg','Sticker','5',''],
+['Stamps_023.jpg','Sticker','5',''],
+['Stamps_024.jpg','Sticker','5',''],
+['Stamps_025.jpg','Sticker','5',''],
+['Stamps_026.jpg','Sticker','5',''],
+['Stamps_027.jpg','Sticker','5',''],
+['Stamps_028.jpg','Sticker','5',''],
+['Stamps_029.jpg','Sticker','5','']] 
 
-    function cargar(){
-        escInf(A);
+function cargar(){
+        escInf('ANIME', anime);
+        escInf('ART', art);
+        escInf('MUSIC', mus);
+        escInf('STAMPS', stamps);
         console.log("Ya se debió cargar todo jaja salu2");
     }
     
 </script>
 <body onload="cargar()">
+       <!-- <section class="galeria">
+        
+            <article>
+                <a>
+                    <figure>
+                        <img class="prodImg" src="" />
+                        <figcaption></figcaption>
+                        <figcaption class="price"></figcaption>
+            </figure></a></article>
+            <article>
+                <a>
+                    <figure>
+                        <img class="prodImg" src="" />
+                        <figcaption></figcaption>
+                        <figcaption class="price"></figcaption>
+            </figure></a></article>
+            <article>
+                <a>
+                    <figure>
+                        <img class="prodImg" src="" />
+                        <figcaption></figcaption>
+                        <figcaption class="price"></figcaption>
+            </figure></a></article>
+            <article>
+                <a>
+                    <figure>
+                        <img class="prodImg" src="" />
+                        <figcaption></figcaption>
+                        <figcaption class="price"></figcaption>
+            </figure></a></article> -->
 
 <header>
     <div id="top-header">
@@ -110,791 +264,917 @@
     </div>
 </span>
 
-    <!-- aQUÍ VA s.txt QUE ACABO DE BORRAR JINIMIIJI  -->
-    <!-- <section class="galeria">
+    <section class="galeria" id="ANIME">
+        <div class="sep" id="stickers"></div>
+        <h1 class="titulo"><a class="Tit">S</a>tickers</h1>
+        <div class="sep"  id="anime"></div>
+        <h2 class="subtitulo">Anime/Manga</h2>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        
+    </section>
+    <section class="galeria" id="ART">
+        <div class="sep"  id="arte"></div>
+        <h2 class="subtitulo">Arte</h2>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        
+    </section>
+    <section class="galeria" id="MUSIC">
         <div class="sep"  id="mus"></div>
         <h2 class="subtitulo">Música</h2>
-            <article> -->
-                <!-- <a onclick="amp('Music_Tailor-Swift_c_001.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_001.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_c_002.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_002.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_c_003.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_003.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_c_004.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_004.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_c_005.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_005.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_c_006.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_006.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_c_007.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_007.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_c_008.png', 'Sticker', '5', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_c_008.png" />
-                        <figcaption>Taylor Swift, album cover</figcaption>
-                        <figcaption class="price">$5</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_re_001.png', 'Sticker', '10', 'Taylor Swift, Eras Tour')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_re_001.png" />
-                        <figcaption>Taylor Swift, Eras Tour</figcaption>
-                        <figcaption class="price">$10</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_re_002.png', 'Sticker', '12', 'Taylor Swift')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_re_002.png" />
-                        <figcaption>Taylor Swift</figcaption>
-                        <figcaption class="price">$15</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Tailor-Swift_re_003.png', 'Sticker', '10', 'Taylor Swiffith')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Tailor-Swift_re_003.png" />
-                        <figcaption>Taylor Swiffith</figcaption>
-                        <figcaption class="price">$10</figcaption>
-            </figure></a></article>
-            <article>
-                <a onclick="amp('Music_Kañe_re_001.png', 'Sticker', '10', 'Kanye Wuts')">
-                    <figure>
-                        <img class="prodImg" src="/img/prod/Music_Kañe_re_001.png" />
-                        <figcaption>Kanye Wuts</figcaption>
-                        <figcaption class="price">$10</figcaption>
-            </figure></a></article>
-    </section> -->
-    <!-- <section class="galeria">
         <article>
-            <a onclick="amp('Music_ACDC_png_001.png', 'Sticker', '10', 'AC DC, Logo (sin fondo)')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Music_ACDC_png_001.png" />
-                    <figcaption>AC DC, Logo</figcaption>
-                    <figcaption class="price">$10</figcaption>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Music_Aphex-Twin_png_001.png', 'Sticker', '5', 'Aphex Twin, Logo (sin fondo)')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Music_Aphex-Twin_png_001.png" />
-                    <figcaption>Aphex Twin, logo</figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Music_Arctic-Monkeys_re_001.png', 'Sticker', '5', 'Arctic Monkeys')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Music_Arctic-Monkeys_re_001.png" />
-                    <figcaption>Arctic Monkeys</figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Music_Badbunny_png_001.png', 'Sticker', '5', 'Bad Bunny (sin fondo)')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Music_Badbunny_png_001.png" />
-                    <figcaption>Bad Bunny</figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Music_BeeGees_png_001.png', 'Sticker', '5', 'Bee Gees, logo (sin fondo)')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Music_BeeGees_png_001.png" />
-                    <figcaption>Bee Gees, logo</figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Music_Blur_png_001.png', 'Sticker', '5', 'Blur, logo (sin fondo)')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Music_Blur_png_001.png" />
-                    <figcaption>Blur, logo</figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Music_Aphrodites-child_c_001.jpg', 'Sticker', '5', 'Aphrodites Child, 666 album cover')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Music_Aphrodites-child_c_001.jpg" />
-                    <figcaption>Aphrodites Child, 666 album cover</figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article> -->
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
+        <article>
+            <a>
+                <figure>
+                    <img class="prodImg" src="" />
+                    <figcaption></figcaption>
+                    <figcaption class="price"></figcaption>
+        </figure></a></article>
 
-        <section class="galeria">
-            <article>
-                <a>
-                    <figure>
-                        <img class="prodImg" src="" />
-                        <figcaption></figcaption>
-                        <figcaption class="price"></figcaption>
-            </figure></a></article>
-            <article>
-                <a>
-                    <figure>
-                        <img class="prodImg" src="" />
-                        <figcaption></figcaption>
-                        <figcaption class="price"></figcaption>
-            </figure></a></article>
-            <article>
-                <a>
-                    <figure>
-                        <img class="prodImg" src="" />
-                        <figcaption></figcaption>
-                        <figcaption class="price"></figcaption>
-            </figure></a></article>
-            <article>
-                <a>
-                    <figure>
-                        <img class="prodImg" src="" />
-                        <figcaption></figcaption>
-                        <figcaption class="price"></figcaption>
-            </figure></a></article>
-
-<!-- 
-        <article>
-            <a onclick="amp('Music_BTS_c_001.png', 'Sticker', '5', 'BTS')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_c_001.png" />
-                    <figcaption>BTS</figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_BTS_c_002.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_c_002.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_BTS_c_003.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_c_003.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_BTS_c_004.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_c_004.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_BTS_c_005.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_c_005.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_BTS_c_006.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_c_006.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_BTS_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_BTS_re_002.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_BTS_re_002.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Burt-Bacharach_c_001.jpg', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Burt-Bacharach_c_001.jpg" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Bust_Bach_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Bust_Bach_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Bust_Beethoven_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Bust_Beethoven_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Bust_Haendel_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Bust_Haendel_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Bust_Mozart_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Bust_Mozart_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article> 
-            <a onclick="amp('Music_Camel_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Camel_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Charles-Mingus_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Charles-Mingus_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Dave-Brubeck-Quartet_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Dave-Brubeck-Quartet_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_EDEN_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_EDEN_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_ELP_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_ELP_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_ELP_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_ELP_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Genesis_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Genesis_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Gorillaz_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Gorillaz_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Greenslade_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Greenslade_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Hatsune-Miku_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Hatsune-Miku_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Herbie-Hancock_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Herbie-Hancock_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Hiromi_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Hiromi_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Holst_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Holst_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Imagine-Dragons_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Imagine-Dragons_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Jerry-Herman_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Jerry-Herman_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Jharioh_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Jharioh_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Jimmy-Smith_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Jimmy-Smith_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_John-Coltrane_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_John-Coltrane_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Keith-Emerson_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Keith-Emerson_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_King-Crimson_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_King-Crimson_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Lana-del-Rey_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Lana-del-Rey_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Lovejoy_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Lovejoy_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Marina&theDimonds_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Marina&theDimonds_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Miles-Davis_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Miles-Davis_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Moody-Blues_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Moody-Blues_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Muse_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Muse_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Opeth_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Opeth_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Opeth_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Opeth_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_PFM_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_PFM_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Pink-Floyd_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Pink-Floyd_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Pink-Floyd_c_002.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Pink-Floyd_c_002.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Pink-Floyd_c_003.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Pink-Floyd_c_003.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Pink-Floyd_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Pink-Floyd_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Prince_c_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Prince_c_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Prince_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Prince_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Radiohead_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Radiohead_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Rush_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Rush_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Squarepusher_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Squarepusher_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Synthesizer_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Synthesizer_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Synthesizer_re_002.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Synthesizer_re_002.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Synthesizer_re_003.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Synthesizer_re_003.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_The-Beatles_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_The-Beatles_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_The-Mountain-Goats_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_The-Mountain-Goats_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_The-Strokes_png_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_The-Strokes_png_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
-        <article>
-            <a onclick="amp('Music_Yes_re_001.png', 'Sticker', '5', '')">
-                <figure>
-                    <img class="prodImg" src="/img/prod/Music_Yes_re_001.png" />
-                    <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
-        </figure></a></article>
     </section>
-    <section class="galeria">
+    <section class="galeria" id="STAMPS">
         <div class="sep"  id="stamps"></div>
-        <h2 class="subtitulo">
+        <h2 class="subtitulo">Estampas</h2>
         <article>
-            <a onclick="amp('Stamps_001.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_001.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_002.png', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_002.png" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_003.png', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_003.png" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_004.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_004.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_005.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_005.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_006.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_006.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_007.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_007.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_008.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_008.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_009.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_009.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_010.png', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_010.png" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_011.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_011.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_012.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_012.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_013.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_013.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_014.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_014.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_015.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_015.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_016.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_016.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_017.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_017.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_018.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_018.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_019.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_019.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_020.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_020.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_021.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_021.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_022.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_022.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_023.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_023.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_024.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_024.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_025.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_025.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_026.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_026.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_027.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_027.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_028.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_028.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
         <article>
-            <a onclick="amp('Stamps_029.jpg', 'Sticker', '5', '')">
+            <a>
                 <figure>
-                    <img class="prodImg" src="/img/prod/Stamps_029.jpg" />
+                    <img class="prodImg" src="" />
                     <figcaption></figcaption>
-                    <figcaption class="price">$5</figcaption>
+                    <figcaption class="price"></figcaption>
         </figure></a></article>
-    </section> -->
+
+    </section>
 
 
 </body>

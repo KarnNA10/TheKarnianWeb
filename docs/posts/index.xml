@@ -1,0 +1,24 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Posts on The Karnian Web</title>
+        <link>localhost/posts/</link>
+        <description>Recent content in Posts on The Karnian Web</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en</language>
+        <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+        <lastBuildDate>Sat, 17 Feb 2024 17:54:40 -0600</lastBuildDate>
+        <atom:link href="localhost/posts/index.xml" rel="self" type="application/rss+xml" />
+        
+        <item>
+            <title>MUESTRATE AAAA</title>
+            <link>localhost/posts/examplepost/</link>
+            <pubDate>Sat, 17 Feb 2024 17:54:40 -0600</pubDate>
+            
+            <guid>localhost/posts/examplepost/</guid>
+            <description>Pq no se actualiza esto? auxili0</description>
+            <content type="html"><![CDATA[<p>Pq no se actualiza esto? auxili0</p>
+]]></content>
+        </item>
+        
+    </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>untagged on The Karnian Web</title>
+    <link>localhost/tags/untagged/</link>
+    <description>Recent content in untagged on The Karnian Web</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&lt;a href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CC BY-NC 4.0&lt;/a&gt;</copyright>
+    <lastBuildDate>Sat, 17 Feb 2024 20:13:44 -0600</lastBuildDate>
+    <atom:link href="localhost/tags/untagged/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A</title>
+      <link>localhost/music/a/</link>
+      <pubDate>Sat, 17 Feb 2024 20:13:44 -0600</pubDate>
+      <guid>localhost/music/a/</guid>
+      <description>La siguiente es una imagen: </description>
+    </item>
+    <item>
+      <title>MUESTRATE AAAA</title>
+      <link>localhost/posts/examplepost/</link>
+      <pubDate>Sat, 17 Feb 2024 17:54:40 -0600</pubDate>
+      <guid>localhost/posts/examplepost/</guid>
+      <description>Pq no se actualiza esto? auxili0</description>
+    </item>
+  </channel>
+</rss>

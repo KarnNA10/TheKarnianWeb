@@ -1,4 +1,4 @@
-# baseURL = 'https://example.org/'
+# baseURL = 'https://KarnNA10.github.io/' 
 # languageCode = 'en-us'
 # title = 'The Karnian Web'
 
@@ -7,6 +7,7 @@ title        = "TheKarnianWeb"
 languageCode = "en-us"
 theme        = "hello-friend-ng"
 paginate     = 10
+publishDir = "docs"
 
 [params]
   dateform        = "Jan 2, 2006"
